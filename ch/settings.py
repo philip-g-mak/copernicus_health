@@ -12,27 +12,24 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'copernicus',                      # Or path to database file if using sqlite3.
+        # The following settings are not used with sqlite3:
+        'USER': 'nahata5',
+        'PASSWORD': 'yankees',
+        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',                      # Set to empty string for default.
+    }
+}
 
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-#         'NAME': 'copernicus',                      # Or path to database file if using sqlite3.
-#         # The following settings are not used with sqlite3:
-#         'USER': 'nahata5',
-#         'PASSWORD': 'yankees',
-#         'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-#         'PORT': '',                      # Set to empty string for default.
-#     }
-#}
-
-DATABASES = {}
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
-
-# Enable Connection Pooling
-DATABASES['default']['ENGINE'] = 'django_postgrespool'
+# DATABASES = {}
+# import dj_database_url
+# DATABASES['default'] =  dj_database_url.config()
+#
+# # Enable Connection Pooling
+# DATABASES['default']['ENGINE'] = 'django_postgrespool'
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -84,7 +81,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static')
+    # os.path.join(BASE_DIR, 'static')
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -97,9 +94,9 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
-import whitenoise
-
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# import whitenoise
+#
+# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'v$2op!+48fc431+r6^ol!*c2&*o-6_a#ni0uu@_=w#yql7e58='
@@ -145,6 +142,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'tracker',
     'rest_framework',
+    'authentication'
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
@@ -177,3 +175,8 @@ LOGGING = {
         },
     }
 }
+
+
+
+AUTH_USER_MODEL = 'authentication.Account'
+

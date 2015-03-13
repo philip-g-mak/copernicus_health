@@ -10,3 +10,9 @@ class IsOwnerOrReadyOnly(permissions.BasePermission):
 
         # Write permissions are only allowed to the owner of the snippet
         return obj.owner == request.user
+
+class IsAccountOwner(permissions.BasePermission):
+    def has_object_permission(self, request, view, account):
+        if request.user:
+            return account == request.user
+        return False
