@@ -142,7 +142,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'tracker',
     'rest_framework',
-    'authentication'
+    # 'authentication'
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
@@ -178,5 +178,5 @@ LOGGING = {
 
 
 
-AUTH_USER_MODEL = 'authentication.Account'
+# AUTH_USER_MODEL = 'authentication.Account'
 

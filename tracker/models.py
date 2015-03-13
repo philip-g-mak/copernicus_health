@@ -1,6 +1,6 @@
 from django.db import models
 from authentication.models import Account
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, User
 
 # Create your models here.
 
@@ -9,7 +9,7 @@ FREQ = [('d', 'Daily'), ('w', 'Weekly')]
 
 
 class Medication(models.Model):
-    owner = models.ForeignKey(Account, related_name='medications')
+    owner = models.ForeignKey(User, related_name='medications')
     rx_name = models.CharField(max_length=180)
     formulation = models.CharField(choices=FORM, default='tab', max_length=180)
     total_quantity = models.IntegerField()
