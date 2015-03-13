@@ -7,13 +7,12 @@ from rest_framework.reverse import reverse
 
 from .models import Medication
 from .serializers import MedicationSerializer, UserSerializer
-from authentication.permissions import IsOwnerOrReadyOnly
-
+from .permissions import IsOwnerOrReadOnly
 
 class MedicationViewSet(viewsets.ModelViewSet):
     queryset = Medication.objects.all()
     serializer_class = MedicationSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadyOnly)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
 
     @detail_route(renderer_classes=[renderers.StaticHTMLRenderer])
     def perform_create(self, serializer):
